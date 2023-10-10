@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { ContactList } from '../ContactList/ContactList';
+import { Filter } from '../Filter/Filter'; // Імпорт компонента Filter
 import css from './contacts.module.css';
+
 export class Contacts extends Component {
   state = {
     contacts: [],
     name: '',
+    number: '',
+    filter: '', // Додавання стану для фільтра
   };
 
-  addContact = name => {
+  addContact = (name, number) => {
     const contact = {
       id: nanoid(),
       name,
+      number,
     };
 
     this.setState(prevState => ({
@@ -20,15 +25,28 @@ export class Contacts extends Component {
     }));
   };
 
+  handleFilterChange = e => {
+    this.setState({ filter: e.target.value });
+  };
+
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
+
+    const filteredContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
 
     return (
       <div>
-        <h1 className={css.titlePhone}>Phonebook</h1>
-        <ContactForm onAddContact={this.addContact} />
-        <h2 className={css.titleContacts}>Contacts</h2>
-        <ContactList contacts={contacts} />
+        <div className={css.phonebook}>
+          <h1 className={css.titlePhone}>Phonebook</h1>
+          <ContactForm onAddContact={this.addContact} />
+        </div>
+        <div className={css.contacts}>
+          <h2 className={css.titleContacts}>Contacts</h2>
+          <Filter value={filter} onChange={this.handleFilterChange} />{' '}
+          <ContactList contacts={filteredContacts} />
+        </div>
       </div>
     );
   }

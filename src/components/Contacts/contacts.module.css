@@ -4,3 +4,10 @@
 .titleContacts {
   font-size: 32px;
 }
+.phonebook,
+.contacts {
+  max-width: 320px;
+  border: solid 1px black;
+  margin: 20px;
+  padding: 10px;
+}
