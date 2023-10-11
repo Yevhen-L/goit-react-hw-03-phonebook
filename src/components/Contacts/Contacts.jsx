@@ -27,6 +27,12 @@ export class Contacts extends Component {
     this.setState({ filter: e.target.value });
   };
 
+  handleDeleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
   render() {
     const { contacts, filter } = this.state;
 
@@ -38,16 +44,15 @@ export class Contacts extends Component {
       <div>
         <div className={css.phonebook}>
           <h1 className={css.titlePhone}>Phonebook</h1>
-          <ContactForm
-            onAddContact={this.addContact}
-            contacts={contacts}
-          />{' '}
-          {/* Передача contacts у ContactForm */}
+          <ContactForm onAddContact={this.addContact} contacts={contacts} />
         </div>
         <div className={css.contacts}>
           <h2 className={css.titleContacts}>Contacts</h2>
           <Filter value={filter} onChange={this.handleFilterChange} />
-          <ContactList contacts={filteredContacts} />
+          <ContactList
+            contacts={filteredContacts}
+            onDeleteContact={this.handleDeleteContact}
+          />
         </div>
       </div>
     );
