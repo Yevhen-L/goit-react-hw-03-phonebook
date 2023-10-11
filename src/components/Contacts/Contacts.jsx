@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { ContactList } from '../ContactList/ContactList';
-import { Filter } from '../Filter/Filter'; // Імпорт компонента Filter
+import { Filter } from '../Filter/Filter';
 import css from './contacts.module.css';
 
 export class Contacts extends Component {
   state = {
     contacts: [],
-    name: '',
-    number: '',
-    filter: '', // Додавання стану для фільтра
+    filter: '',
   };
 
   addContact = (name, number) => {
@@ -40,11 +38,15 @@ export class Contacts extends Component {
       <div>
         <div className={css.phonebook}>
           <h1 className={css.titlePhone}>Phonebook</h1>
-          <ContactForm onAddContact={this.addContact} />
+          <ContactForm
+            onAddContact={this.addContact}
+            contacts={contacts}
+          />{' '}
+          {/* Передача contacts у ContactForm */}
         </div>
         <div className={css.contacts}>
           <h2 className={css.titleContacts}>Contacts</h2>
-          <Filter value={filter} onChange={this.handleFilterChange} />{' '}
+          <Filter value={filter} onChange={this.handleFilterChange} />
           <ContactList contacts={filteredContacts} />
         </div>
       </div>
