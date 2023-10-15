@@ -10,3 +10,12 @@
   row-gap: 10px;
   padding: 0;
 }
+.contactslistBtn {
+  border-radius: 3px;
+  background-color: aliceblue;
+}
+
+.contactslistBtn:hover,
+.contactslistBtn:focus {
+  background-color: rgb(252, 202, 205);
+}
