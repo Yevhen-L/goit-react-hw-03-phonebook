@@ -4,3 +4,13 @@
   flex-direction: column;
   gap: 5px;
 }
+
+.contactsformtBtn {
+  border-radius: 3px;
+  background-color: aliceblue;
+}
+
+.contactsformtBtn:hover,
+.contactsformtBtn:focus {
+  background-color: rgb(252, 202, 205);
+}

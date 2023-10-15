@@ -44,7 +44,9 @@ export class ContactForm extends Component {
           placeholder="Enter phone number"
           required
         />
-        <button type="submit">Add Contact</button>
+        <button className={css.contactsformtBtn} type="submit">
+          Add Contact
+        </button>
       </form>
     );
   }
